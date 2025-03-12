@@ -26,6 +26,7 @@ String id = (String) session.getAttribute("id");
 			  <img src="images/search.png">
 			</div>
 
+
             <ul class="util">
                 <li><a href="./contact.jsp">Contact</a></li>
                 <li><a href="./main.jsp">Main</a></li>            
@@ -106,7 +107,7 @@ String id = (String) session.getAttribute("id");
     <footer>
         <div class="inner">
             <div class="upper">
-                <h1>DCODELAB</h1>
+                <h1>웹사이트</h1>
                 <ul>
                     <li><a href="#">Policy</a></li>
                     <li><a href="#">Terms</a></li>
@@ -117,11 +118,10 @@ String id = (String) session.getAttribute("id");
 
             <div class="lower">
                 <address>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, facere.<br>
-                    TEL : 031-111-1234 C.P : 010-1234-5678
+                    TEL : 02-111-1234 C.P : 010-1234-5678
                 </address>
                 <p>
-                    2020 DOCDELAB &copy; copyright all right reserved.
+                    2025 SOLOPROJECT &copy; copyright all right reserved.
                 </p>
             </div>
         </div>

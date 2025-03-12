@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="util.DatabaseUtil"%>
 <%@ page import="java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-String idStr = request.getParameter("id");
-if (idStr == null) {
-    response.sendRedirect("../main.jsp");
+String mId = request.getParameter("mId");
+if (mId == null) {
+    response.sendRedirect("/main.jsp");
     return;
 }
 
-int id = Integer.parseInt(idStr);
+int id = Integer.parseInt(mId);
+
 Connection conn = null;
 PreparedStatement psmt = null;
 ResultSet rset = null;
@@ -36,7 +38,7 @@ try {
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 <title><%=rset.getString("title")%></title>
 <style type="text/css">
 	.item {
@@ -73,7 +75,7 @@ try {
             </div>
         </div>
         <div class="item">		   
-            <img alt="<%="."+rset.getString("alt")%>" src="<%="."+rset.getString("alt")%>"> 
+            <img alt="<%=rset.getString("alt")%>" src="${pageContext.request.contextPath}<%=rset.getString("alt")%>"> 
             <div class="item-text">
 	            <div style="font-weight: bold; margin: 4px; margin-bottom: 18px; font-size: large;"><%=rset.getString("title")%>
 	            	 <span style="font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;<%=rset.getInt("price")%>원</span> 
@@ -107,7 +109,7 @@ try {
 
         <div class="board-content">
 	        <c:forEach var="comment" items="${list}">
-	            <div>${comment.vcomment}</div>
+	            <div>${comment.vComment}</div>
 	            <div>${comment.vWriter}</div>
 	            <div>${comment.vDate}</div>
 	        </c:forEach>
@@ -115,6 +117,7 @@ try {
  
         <!-- 댓글창 -->
         <form action="commentProcess.jsp" method="post">
+        	<input type="hidden" name="mId" value="<%= mId%>"/>
 			<textarea rows="5" cols="50" name="vComment"></textarea>
 			<input type="submit" class="btn-primary"/>
 		</form>	

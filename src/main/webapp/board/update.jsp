@@ -101,11 +101,11 @@ try{
                 <input name="text" name="alt" value="<%=rset.getString("alt") %>" required/> </div>
                 
             <div class="form-group">
-                <textarea name="content" value="<%=rset.getString("content") %>" required></textarea> </div>
+                <textarea name="content"  required><%=rset.getString("content") %></textarea> </div>
             
             <div class="board-buttons">
                 <button type="submit">수정</button>
-                <a href="..main.jsp" class="btn">취소</a>
+                <a href="view.jsp?id=<%=rset.getString("id") %>" class="btn">취소</a>
             </div>
             
         </form>

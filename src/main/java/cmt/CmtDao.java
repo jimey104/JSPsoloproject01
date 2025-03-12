@@ -8,9 +8,7 @@ import util.DatabaseUtil;
 
 public class CmtDao {
 	
-	
-	
-	public List<Comment> ReadAll() {
+	public List<Comment> ReadAll(String mId) {
 		List<Comment> list = new ArrayList<>();
 		
 		Connection conn = null;
@@ -18,15 +16,20 @@ public class CmtDao {
 		ResultSet rset = null;
 		
 		try {
-			String sql = "select * from COMMENT";
+			String sql = "select * from comment where mId = ?";
 			
 			conn = DatabaseUtil.getConnection();
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mId);
 			rset = psmt.executeQuery();
 			
 			while(rset.next()) {
 				Comment cmt = new Comment(
-						rset.getInt("vId"), rset.getString("vcomment"), rset.getString("vDate"), rset.getString("vWriter"));
+						rset.getInt("vId"),
+						rset.getString("mId"),
+						rset.getString("vComment"),
+						rset.getString("vDate"),
+						rset.getString("vWriter"));
 				list.add(cmt);
 			}
 		} catch (Exception e) {

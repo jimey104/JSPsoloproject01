@@ -167,8 +167,8 @@ String sql = "select * from market";
 	        ResultSet rset = stmt.executeQuery(sql);){
 	    while(rset.next()){
 	%>
-	    <div class="item" onclick="location.href='board/view.jsp?id=<%=rset.getString("id")%>';">
-	        <img alt="이미지" src="<%=rset.getString("alt") %>">
+	   <div class="item" onclick="location.href='${pageContext.request.contextPath}/view?mId=<%=rset.getString("id")%>';">
+	        <img alt="이미지" src=".<%=rset.getString("alt") %>">
 	        <div class="title"><%=rset.getString("title") %></div>
 	        <div class="location"><%=rset.getString("loc") %></div>
 	        <div class="price"><%=rset.getString("price") %>원</div>

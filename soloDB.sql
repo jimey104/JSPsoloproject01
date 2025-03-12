@@ -25,10 +25,10 @@ CREATE TABLE market (
 select * from market;
 delete from market where id = 5;
 insert into market(title, content, alt, loc, price, writer) values
-('티셔츠', '티셔츠 팔아요','./images/img001.jpg', 'busan', 5000, 'test1' ),
-('중고', '중고요','./images/img002.jpg', '서울', 6000, 'test1' ),
-('유사신품', '실 사용 2회','./images/img003.jpg', '영등포', 7000, 'test1' ),
-('나무엔틱의자', '이케아에서 샀어요.','./images/img004.jpg', '마포', 8000, 'test1' );
+('티셔츠', '티셔츠 팔아요','/images/img001.jpg', 'busan', 5000, 'test1' ),
+('중고', '중고요','/images/img002.jpg', '서울', 6000, 'test1' ),
+('유사신품', '실 사용 2회','/images/img003.jpg', '영등포', 7000, 'test1' ),
+('나무엔틱의자', '이케아에서 샀어요.','/images/img004.jpg', '마포', 8000, 'test1' );
 
 ====================================================
 
@@ -48,11 +48,13 @@ select * from users;
 
 
 create table comment(
-	vId INT PRIMARY KEY,
+	vId INT auto_increment PRIMARY KEY,
+    mId int not null,
 	vComment TEXT NOT NULL,
     vDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     vWriter VARCHAR(50) NOT NULL,
-    FOREIGN KEY (vWriter) REFERENCES users(username)
+    FOREIGN KEY (mId) REFERENCES market(id)
 );
 drop table comment;
 select * FROM comment;
+INSERT INTO comment (vWriter, vComment, mId) VALUES ('test1','asdasd', '6');

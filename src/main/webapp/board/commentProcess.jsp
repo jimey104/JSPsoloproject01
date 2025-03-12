@@ -5,6 +5,7 @@
 <% 
 String comment = request.getParameter("vComment");
 String writer =  (String)session.getAttribute("username");
+String mId = request.getParameter("mId");
 
 Connection conn = null;
 PreparedStatement psmt = null;
@@ -15,10 +16,11 @@ try {
     conn = DatabaseUtil.getConnection();
     
  	// 댓글 작성
-    String sql = "INSERT INTO COMMENT (vWriter, vComment) VALUES (?,?)";
+    String sql = "INSERT INTO comment (vWriter, vComment, mId) VALUES (?,?,?) ";
     psmt = conn.prepareStatement(sql);
     psmt.setString(1, writer);
     psmt.setString(2, comment);
+    psmt.setString(3, mId);
     
     int result = psmt.executeUpdate();
 

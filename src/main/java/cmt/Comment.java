@@ -2,19 +2,21 @@ package cmt;
 
 public class Comment {
 	private int 	vId; 
-	private String	vcomment;
+	private String	vComment;
 	private String	vDate;
 	private String	vWriter;
+	private String 	mId;
 	public Comment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Comment(int vId, String vcomment, String vDate, String vWriter) {
+	public Comment(int vId, String vComment, String vDate, String vWriter, String mId) {
 		super();
 		this.vId = vId;
-		this.vcomment = vcomment;
+		this.vComment = vComment;
 		this.vDate = vDate;
 		this.vWriter = vWriter;
+		this.mId = mId;
 	}
 	public int getvId() {
 		return vId;
@@ -22,11 +24,11 @@ public class Comment {
 	public void setvId(int vId) {
 		this.vId = vId;
 	}
-	public String getVcomment() {
-		return vcomment;
+	public String getvComment() {
+		return vComment;
 	}
-	public void setVcomment(String vcomment) {
-		this.vcomment = vcomment;
+	public void setvComment(String vComment) {
+		this.vComment = vComment;
 	}
 	public String getvDate() {
 		return vDate;
@@ -40,7 +42,12 @@ public class Comment {
 	public void setvWriter(String vWriter) {
 		this.vWriter = vWriter;
 	}
-
+	public String getmId() {
+		return mId;
+	}
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
 	
 	
 }
