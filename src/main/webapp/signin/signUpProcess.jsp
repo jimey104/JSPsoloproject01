@@ -30,13 +30,11 @@ try{
 	
 	psmt.executeUpdate();
 	
-	session.setAttribute("id", id);
-	session.setAttribute("username", username);
+	response.sendRedirect("./signIn.jsp");
 	
-	response.sendRedirect("../main.jsp");
-	
-} catch( Exception e){ e.printStackTrace(); 
-
+} catch( Exception e){ 
+	e.printStackTrace(); 
+	out.println("<script>alert('오류.'); history.back();</script>");
 } finally {
 	
 	if(rset==null){try{rset.close();}catch(Exception e){ } }

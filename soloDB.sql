@@ -1,6 +1,5 @@
 use spring5fs;
 
-
 drop table market;
 
 CREATE TABLE market (
@@ -30,7 +29,6 @@ insert into market(title, content, alt, loc, price, writer) values
 ('유사신품', '실 사용 2회','/images/img003.jpg', '영등포', 7000, 'test1' ),
 ('나무엔틱의자', '이케아에서 샀어요.','/images/img004.jpg', '마포', 8000, 'test1' );
 
-====================================================
 
 drop table users;
 
@@ -57,4 +55,4 @@ create table comment(
 );
 drop table comment;
 select * FROM comment;
-INSERT INTO comment (vWriter, vComment, mId) VALUES ('test1','asdasd', '6');
+INSERT INTO comment (vWriter, vComment, mId) VALUES ('test1','asdasd', '1');

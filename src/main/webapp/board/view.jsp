@@ -66,7 +66,7 @@ try {
         <div class="board-header">
             <h2><%=rset.getString("title")%></h2>
             <div class="board-nav">
-                <a href="../main.jsp">메인</a>
+                <a href="./main.jsp">메인</a>
                 <% if (session.getAttribute("username") != null && 
                       session.getAttribute("username").equals(rset.getString("writer"))) { %>
                     <a href="update.jsp?id=<%=id%>">수정</a>
@@ -93,7 +93,7 @@ try {
             <span>작성자: <%=rset.getString("writer")%></span>
             <span>작성일: <%=rset.getTimestamp("regdate")%></span>
             <span>조회수: <%=rset.getInt("viewcount")%></span>
-        </div>
+<!--         </div> -->
 <%
     } else {
         out.println("<script>alert('존재하지 않는 게시글입니다.'); location.href='../main.jsp';</script>");
@@ -106,21 +106,34 @@ try {
     if (conn != null) { try { conn.close(); } catch (Exception e) {} } 
 }
 %>         
+		!-- 댓글창 컨테이너 -->
+		<div class="unique-comment-container">
+		    <c:forEach var="comment" items="${list}">
+	        	<div class="unique-comment-box">
+		            <div class="unique-comment-header">
+		                <span class="unique-comment-author">${comment.vWriter}</span>
+		                <span class="unique-comment-date">${comment.vDate}</span>
+		            </div>
+		            <hr/>
+		            <div class="unique-comment-body">
+			            <span class="unique-comment-cmt">${comment.vComment}</span>
+			            <span class="unique-comment-delete" OnClick="location.href='./board/commentDelete.jsp?vId=${comment.vId}'">삭제</span>
 
-        <div class="board-content">
-	        <c:forEach var="comment" items="${list}">
-	            <div>${comment.vComment}</div>
-	            <div>${comment.vWriter}</div>
-	            <div>${comment.vDate}</div>
-	        </c:forEach>
-        </div>
- 
-        <!-- 댓글창 -->
-        <form action="commentProcess.jsp" method="post">
-        	<input type="hidden" name="mId" value="<%= mId%>"/>
-			<textarea rows="5" cols="50" name="vComment"></textarea>
-			<input type="submit" class="btn-primary"/>
-		</form>	
+		        	</div>
+		        </div>
+		    </c:forEach>        
+		</div>
+		
+		<!-- 댓글 작성창 컨테이너 -->
+		<div class="unique-comment-form-container">
+		    <form action="${pageContext.request.contextPath}/board/commentProcess.jsp" method="post">
+		        <input type="hidden" name="username" value="<%=(String)session.getAttribute("username")%>"/>
+		        <input type="hidden" name="mId" value="<%= mId%>"/>
+		        <textarea rows="5" cols="50" name="vComment" class="unique-comment-textarea" placeholder="댓글을 작성하세요..."></textarea>
+		        <button type="submit" class="unique-submit-btn">제출</button>
+		    </form>
+		</div>
+		
     </div>
 </body>
 </html>

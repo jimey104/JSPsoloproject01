@@ -22,11 +22,13 @@ try{
 	if(rset.next()){
 		session.setAttribute("id", id);
 		session.setAttribute("username", rset.getString("username"));
-		response.sendRedirect("../main.jsp");
+		response.sendRedirect("../index.jsp");
 	}else{
-		response.sendRedirect("../main.jsp");
+		out.println("<script>alert('로그인에 실패했습니다.'); location.href='../index.jsp';</script>");
 	}
-} catch(Exception e){ e.printStackTrace(); 
+} catch(Exception e){ 
+	e.printStackTrace(); 
+	out.println("<script>alert('오류.'); location.href='../index.jsp';</script>");
 } finally {
 	if(rset==null){try{rset.close();}catch(Exception e){ } }
 	if(psmt==null){try{psmt.close();}catch(Exception e){ } }

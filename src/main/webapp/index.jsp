@@ -31,10 +31,10 @@ String id = (String) session.getAttribute("id");
                 <li><a href="./contact.jsp">Contact</a></li>
                 <li><a href="./main.jsp">Main</a></li>            
 <% 				
-				if((String)session.getAttribute("userId") != null) { 				
+				if((String)session.getAttribute("id") != null) { 				
 %>
 					<li><a href="signin/signUp.jsp">회원정보수정</a></li>   
-                  	<li><a href="signin/signOut.jsp"><%=session.getAttribute("userName") %>님 Logout</a></li>   
+                  	<li><a href="signin/signOut.jsp"><%=session.getAttribute("username") %>님 Logout</a></li>   
 <%				      	
 				} else{ 
 %>				

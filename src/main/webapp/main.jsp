@@ -4,7 +4,7 @@
 <%
 String id = (String) session.getAttribute("id");
 if(id==null){
-	response.sendRedirect("index.jsp");
+	out.print("<script>alert('로그인이 필요합니다.'); location.href='signin/signIn.jsp';</script>");
 }
 
 Class.forName("com.mysql.cj.jdbc.Driver");

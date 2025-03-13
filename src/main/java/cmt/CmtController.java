@@ -29,11 +29,12 @@ public class CmtController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CmtDao dao = new CmtDao();
+		CmtDao dao = new CmtDao();
 
         try {	
         	String mId = request.getParameter("mId"); // 요청에서 mId 가져오기
         	request.setAttribute("mId", mId);
+            	
             if (mId != null && !mId.isEmpty()) {
                 List<Comment> list = dao.ReadAll(mId); // mId를 DAO에 전달
                 request.setAttribute("list", list);
@@ -41,8 +42,7 @@ public class CmtController extends HttpServlet {
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("/board/view.jsp");
             dispatcher.forward(request, response);
-            
-            
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

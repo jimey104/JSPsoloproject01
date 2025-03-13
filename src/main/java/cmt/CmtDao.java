@@ -7,14 +7,12 @@ import java.util.List;
 import util.DatabaseUtil;
 
 public class CmtDao {
+	Connection conn;
+	PreparedStatement psmt;
+	ResultSet rset;
 	
 	public List<Comment> ReadAll(String mId) {
 		List<Comment> list = new ArrayList<>();
-		
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rset = null;
-		
 		try {
 			String sql = "select * from comment where mId = ?";
 			
@@ -24,7 +22,7 @@ public class CmtDao {
 			rset = psmt.executeQuery();
 			
 			while(rset.next()) {
-				Comment cmt = new Comment(
+				Comment cmt = new Comment(	
 						rset.getInt("vId"),
 						rset.getString("mId"),
 						rset.getString("vComment"),
