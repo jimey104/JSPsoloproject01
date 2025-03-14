@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="util.DatabaseUtil"%>
 <%@ page import="java.sql.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -42,18 +42,20 @@ try {
 <title><%=rset.getString("title")%></title>
 <style type="text/css">
 	.item {
-        background: white;
-        padding: 10px;
-        border-radius: 3px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        
+	    background: white;
+	    padding: 10px;
+	    border-radius: 3px;
+	    display: flex;
+	    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	    text-align: center;
+	    min-height: 350px;
     }
     .item img {
         width: 490px;
     	height: 290px;
         object-fit: cover;
         border-radius: 3px;
+        margin: 25px;
     }
     .item .item-text{
     	text-align: left;
@@ -79,21 +81,22 @@ try {
             <div class="item-text">
 	            <div style="font-weight: bold; margin: 4px; margin-bottom: 18px; font-size: large;"><%=rset.getString("title")%>
 	            	 <span style="font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;<%=rset.getInt("price")%>원</span> 
-	            	</div>
-	            <span style="color: gray;"><%=rset.getString("category") != null ? rset.getString("category") : "기타"%></span>
-	                       	            
-	            <span><%=rset.getString("loc")%></span>
+	            </div>	         	       
+	            <span style="color: gray; text-decoration: underline;"><%=rset.getString("category") != null ? rset.getString("category") : "기타"%></span>                	            
+	            <span><%=rset.getString("loc")%></span>	        	 
             </div>
         </div>
-        <div class="board-content">
-            <%=rset.getString("content").replace("\n", "<br>")%>
+        <div class="board-body">
+	        <div class="board-info">
+	            <span>작성자: <%=rset.getString("writer")%></span>
+	            <span>작성일: <%=rset.getTimestamp("regdate")%></span>
+	            <span>조회수: <%=rset.getInt("viewcount")%></span>
+			</div> 
+	        <div class="board-content">
+	            <%=rset.getString("content").replace("\n", "<br>")%>
+	        </div>
         </div>
         
-        <div class="board-info">
-            <span>작성자: <%=rset.getString("writer")%></span>
-            <span>작성일: <%=rset.getTimestamp("regdate")%></span>
-            <span>조회수: <%=rset.getInt("viewcount")%></span>
-<!--         </div> -->
 <%
     } else {
         out.println("<script>alert('존재하지 않는 게시글입니다.'); location.href='../main.jsp';</script>");
@@ -106,20 +109,22 @@ try {
     if (conn != null) { try { conn.close(); } catch (Exception e) {} } 
 }
 %>         
-		!-- 댓글창 컨테이너 -->
+		<!-- 댓글창 컨테이너 -->
 		<div class="unique-comment-container">
 		    <c:forEach var="comment" items="${list}">
 	        	<div class="unique-comment-box">
+	        	
 		            <div class="unique-comment-header">
 		                <span class="unique-comment-author">${comment.vWriter}</span>
 		                <span class="unique-comment-date">${comment.vDate}</span>
 		            </div>
-		            <hr/>
+		            		            
+		            <hr/>		            
 		            <div class="unique-comment-body">
 			            <span class="unique-comment-cmt">${comment.vComment}</span>
 			            <span class="unique-comment-delete" OnClick="location.href='./board/commentDelete.jsp?vId=${comment.vId}'">삭제</span>
-
 		        	</div>
+		        	
 		        </div>
 		    </c:forEach>        
 		</div>

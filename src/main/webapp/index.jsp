@@ -33,7 +33,7 @@ String id = (String) session.getAttribute("id");
 <% 				
 				if((String)session.getAttribute("id") != null) { 				
 %>
-					<li><a href="signin/signUp.jsp">회원정보수정</a></li>   
+					<li><a href="signin/signUp.jsp">Edit info</a></li>   
                   	<li><a href="signin/signOut.jsp"><%=session.getAttribute("username") %>님 Logout</a></li>   
 <%				      	
 				} else{ 
